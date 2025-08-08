@@ -1,27 +1,31 @@
-import type { Metadata } from "next"
-import { Inter } from 'next/font/google'
-import "./globals.css"
-import { Navigation } from "@/components/navigation"
-
-const inter = Inter({ subsets: ["latin"] })
+import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "TetraGold Whitepaper - Revolutionary Synthetic Gold Platform",
-  description: "TGAUx - Production-grade synthetic gold asset with 99.5%+ price correlation, instant liquidity, and advanced DeFi features",
-    generator: 'v0.dev'
+  title: 'v0 App',
+  description: 'Created with v0',
+  generator: 'v0.dev',
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navigation />
-        {children}
-      </body>
+      <head>
+        <style>{`
+html {
+  font-family: ${GeistSans.style.fontFamily};
+  --font-sans: ${GeistSans.variable};
+  --font-mono: ${GeistMono.variable};
+}
+        `}</style>
+      </head>
+      <body>{children}</body>
     </html>
   )
 }
